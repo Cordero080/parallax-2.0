@@ -88,47 +88,128 @@ document.addEventListener("DOMContentLoaded", function () {
   const myNameElement = document.getElementById("myName");
   if (!myNameElement) return;
 
-  let hoverTimer = null;
-  let isComplementaryMode = false;
+  let scrambleInterval = null;
+  let scrambleTimeout = null;
+  const originalText = myNameElement.textContent;
+  const nameLetters = originalText.split("");
 
-  function toggleComplementaryColors() {
-    isComplementaryMode = !isComplementaryMode;
-    if (isComplementaryMode) {
-      document.body.classList.add("complementary-colors");
-      updateWaveColors(true);
-      setEtherealWaveComplexity(true);
-    } else {
-      document.body.classList.remove("complementary-colors");
-      updateWaveColors(false);
-      setEtherealWaveComplexity(false);
+  // Upside down unicode map for basic Latin letters
+  const upsideDownMap = {
+    A: "$",
+    B: "𐐒",
+    C: "Ↄ",
+    D: "◖",
+    E: "Ǝ",
+    F: "Ⅎ",
+    G: "⅁",
+    H: "H",
+    I: "e",
+    J: "L",
+    K: "8",
+    L: "0",
+    M: "W",
+    N: "o",
+    O: "⌘",
+    P: "L",
+    Q: "d",
+    R: "ᴚ",
+    S: "S",
+    T: "⊥",
+    U: "∩",
+    V: "Λ",
+    W: "$",
+    X: "X",
+    Y: "⅄",
+    Z: "Z",
+    a: "⏄",
+    b: "q",
+    c: "ɔ",
+    d: "p",
+    e: "ǝ",
+    f: "ɟ",
+    g: "ƃ",
+    h: "ɥ",
+    i: "ᴉ",
+    j: "ɾ",
+    k: "ʞ",
+    l: "ʃ",
+    m: "ɯ",
+    n: "u",
+    o: "o",
+    p: "d",
+    q: "b",
+    r: "ɹ",
+    s: "s",
+    t: "¡",
+    u: "n",
+    v: "ʌ",
+    w: "ʍ",
+    x: "x",
+    y: "ʎ",
+    z: "z",
+  };
+
+  // Ensure toggleComplementaryColors is accessible
+  window.toggleComplementaryColors =
+    window.toggleComplementaryColors ||
+    function () {
+      if (typeof isComplementaryMode === "undefined") {
+        window.isComplementaryMode = false;
+      }
+      window.isComplementaryMode = !window.isComplementaryMode;
+      if (window.isComplementaryMode) {
+        document.body.classList.add("complementary-colors");
+        updateWaveColors(true);
+        setEtherealWaveComplexity(true);
+      } else {
+        document.body.classList.remove("complementary-colors");
+        updateWaveColors(false);
+        setEtherealWaveComplexity(false);
+      }
+    };
+
+  function scrambleName() {
+    // Scramble using only letters in the name
+    let scrambled = [];
+    for (let i = 0; i < nameLetters.length; i++) {
+      // Pick a random letter from the name
+      let randLetter =
+        nameLetters[Math.floor(Math.random() * nameLetters.length)];
+      // Convert to upside down if possible
+      let upside = upsideDownMap[randLetter] || randLetter;
+      scrambled.push(upside);
     }
+    // Reverse the scrambled array
+    scrambled = scrambled.reverse();
+    myNameElement.textContent = scrambled.join("");
   }
 
   myNameElement.addEventListener("mouseenter", () => {
-    // Reset to initial before animating
-    myNameElement.style.transition = "letter-spacing 0s";
-    myNameElement.style.letterSpacing = ".2em";
-    // Set transition property before animating
-    let spacingTimer = setTimeout(() => {
-      myNameElement.style.transition =
-        "letter-spacing 3s cubic-bezier(.77,0,.18,1)";
-      myNameElement.style.letterSpacing = "3em";
+    scrambleInterval = setInterval(scrambleName, 80);
+    scrambleTimeout = setTimeout(() => {
+      clearInterval(scrambleInterval);
+      scrambleInterval = null;
+      // After 3 seconds, show the final scrambled, reversed, upside down name
+      let final = nameLetters
+        .map((l) => upsideDownMap[l] || l)
+        .reverse()
+        .join("");
+      myNameElement.textContent = final;
+      // Activate complimentary mode
+      window.toggleComplementaryColors();
     }, 2000);
-    hoverTimer = setTimeout(() => {
-      myNameElement.style.letterSpacing = ".2em";
-      setTimeout(() => {
-        myNameElement.style.transition = "";
-      }, 2850); //
-      toggleComplementaryColors();
-    }, 3000);
-    myNameElement._spacingTimer = spacingTimer;
   });
 
   myNameElement.addEventListener("mouseleave", () => {
-    if (hoverTimer) {
-      clearTimeout(hoverTimer);
-      hoverTimer = null;
+    if (scrambleInterval) {
+      clearInterval(scrambleInterval);
+      scrambleInterval = null;
     }
+    if (scrambleTimeout) {
+      clearTimeout(scrambleTimeout);
+      scrambleTimeout = null;
+    }
+    myNameElement.textContent = originalText;
   });
 });
 

@@ -56,8 +56,7 @@ position: relative;
 /* Navigation Bar Styles */
 
 #myName {
-  letter-spacing: .2em;
-  
+  /* letter-spacing removed for normal mode */
 }
 .navbar {
   position: fixed;
@@ -97,6 +96,7 @@ position: relative;
 .nav-links {
   display: flex;
   gap: 2rem;
+  perspective: 600px;
 }
 
 .nav-links a {
@@ -104,13 +104,57 @@ position: relative;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 400;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.8s cubic-bezier(.77,0,.18,1), transform 1.2s cubic-bezier(.77,0,.18,1);
   position: relative;
+  transform-style: preserve-3d;
+}
+
+.nav-links a:nth-child(1):hover {
+  color: #8a37ff;
+  transform:
+    translateY(-1px)
+    scale(1.2)
+    rotateX(38deg)
+    rotateY(180deg)
+    scaleY(0.75);
+  z-index: 2;
+}
+.nav-links a:nth-child(2):hover {
+  color: #6531ff;
+  transform:
+    translateY(-1px)
+    scale(1.2)
+    rotateX(360deg)
+    scaleY(0.75);
+  z-index: 2;
+}
+.nav-links a:nth-child(3):hover {
+  color: #ce38ec;
+  transform:
+    translateY(20px)
+    scale(1.15)
+    rotateX(180deg)
+    scaleY(0.75);
+  z-index: 2;
+}
+.nav-links a:nth-child(4):hover {
+  color: #6507fd;
+  transform:
+    translateY(-16px)
+    scale(1.5)
+    rotateX(360deg)
+    scaleY(0.7);
+  z-index: 2;
 }
 
 .nav-links a:hover {
-  color: #8338ec;
-  transform: translateY(-2px);
+  color: #7616fc;
+  /* Mysterious movement: rotate, scale, and translate unpredictably */
+  transform:
+    translateY(-8px)
+    rotateZ(-8deg)
+    scale(1.12)
+    skewX(12deg);
 }
 
 .nav-links a::after {
