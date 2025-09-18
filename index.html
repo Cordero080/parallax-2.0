@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Floating Cards with Parallax</title>
+    <link rel="stylesheet" href="Css/style.css" />
+    <script src="js/sineWave.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <audio id="site-audio" src="./music/Sonata Saeculorum.mp3" autoplay loop></audio>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="#"><span id="myName">PABLOPISTOLA</span></a>
+        </div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <canvas id="waves"></canvas>
+    <div class="container">
+      <div class="card" data-speed="0.3">
+        <h2 class="glitch" data-text="PROJECT I">PROJECT I</h2>
+        <p class="card-description">TRANSCENDNCE PET SIM</p>
+      </div>
+      <div class="card" data-speed="-0.4">
+        <h2 class="glitch" data-text="PROJECT II">PROJECT II</h2>
+        <p class="card-description">EXPRESS APP</p>
+      </div>
+      <div class="card" data-speed="0.9">
+        <h2 class="glitch" data-text="PROJECT III">PROJECT III</h2>
+        <p class="card-description">MAGNUM OPUS</p>
+      </div>
+    </div>
+  </body>
+</html>

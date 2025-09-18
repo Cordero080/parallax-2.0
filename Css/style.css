@@ -1,0 +1,586 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Honk&family=Monoton&family=Poiret+One&family=Splash&family=Tektur:wght@400..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+
+@font-face {
+  font-family: "Future Z";
+  src: url('./Fonts/FutureZ.otf') format('truetype');
+  font-weight: normal;
+font-style: normal;
+}
+@font-face {
+  font-family: 'Minimal';
+  src: url('./Fonts/minimal.ttf') format('truetype');
+  font-weight: normal;
+font-style: normal;
+}
+ /* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    #ff006e,    /* Hot pink */
+    #8338ec,    /* Purple */
+    #07429f,    /* Blue */
+    #124ba6,    /* Mint green */
+    #561197,    /* Yellow */
+    #960dc4     /* Orange */
+  );
+  border-radius: 8px;
+  border: 2px solid #000;
+}
+
+/* respects width/height allowance*/
+ 
+ 
+ 
+ body {
+background: #111;
+color: white;
+margin: 0;
+font-family: "Orbitron", sans-serif;
+height: 300vh;
+padding-top: 80px; /* Reduced to account for fixed navbar */
+overflow-x: hidden;
+position: relative;
+}
+
+/* Navigation Bar Styles */
+
+#myName {
+  letter-spacing: .2em;
+  
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(16, 29, 61, 0.331);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.nav-logo a {
+  font-family: "Minimal", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(45deg, #ff006e, #8338ec, #07429f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-left: 2rem; /* Push the logo text to the right */
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: #c254f58a;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: #8338ec;
+  transform: translateY(-2px);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(45deg, #ff006e, #8338ec, rgb(0, 128, 83));
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+    .container {
+      position: relative;
+      z-index: 1;
+      perspective: 1000px;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+     margin-top: 200px;
+    }
+
+    .card {
+      display: flex;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-family: "Future Z";
+      align-items: center;
+      flex-direction: column;
+      width: 300px;
+      height: 200px; /* Restored to original height */
+      
+      background: linear-gradient(135deg, 
+        #0c0c0c 0%,     /* Deep black */
+        #1a1a1a 25%,    /* Dark charcoal */
+        #2d2d2d 50%,    /* Medium gray */
+        #1a1a1a 75%,    /* Dark charcoal */
+        #0c0c0c 100%    /* Deep black */
+      );
+      color: rgba(158, 208, 241, 0.764);
+      border-radius: 12px;
+      box-shadow: 
+        0 20px 40px rgba(38, 6, 220, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      transform: rotateY(10deg) translateZ(50px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      will-change: transform;
+      position: relative;
+    }
+
+    /* Glitch Effect for Card Text */
+    .glitch {
+      position: relative;
+      display: inline-block;
+      animation: glitch 9s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      color: #ff0080;
+      z-index: -1;
+      animation: glitch-before 1s infinite;
+    }
+
+    .glitch::after {
+      color: #00eeff;
+      z-index: -2;
+  
+      animation: glitch-after 2s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      25% { transform: translate(2px, -2px); }
+      30% { transform: translate(-2px, -2px); }
+      45% { transform: translate(2px, 2px); }
+      50% { transform: translate(-2px, 2px); }
+      65% { transform: translate(2px, -2px); }
+      70% { transform: translate(-2px, -2px); }
+      85% { transform: translate(2px, 2px); }
+      90% { transform: translate(-2px, 2px); }
+    }
+
+    @keyframes glitch-before {
+      0%, 100% { transform: translate(0); }
+      15% { transform: translate(2px, -2px); }
+      30% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, 2px); }
+      30% { transform: translate(-2px, -2px); }
+      15% { transform: translate(2px, -2px); }
+      60% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, 2px); }
+      95% { transform: translate(-2px, -2px); }
+      90% { transform: translate(2px, -2px); }
+    }
+
+    @keyframes glitch-after {
+      0%, 100% { transform: translate(0); }
+      10% { transform: translate(-1px, 1px); }
+      20% { transform: translate(1px, -1px); }
+      30% { transform: translate(-1px, -1px); }
+      40% { transform: translate(1px, 1px); }
+      50% { transform: translate(-1px, 1px); }
+      60% { transform: translate(1px, -1px); }
+      70% { transform: translate(-1px, -1px); }
+      80% { transform: translate(1px, 1px); }
+      90% { transform: translate(-1px, 1px); }
+    }
+
+    .card:hover .glitch {
+      animation-duration: .2s;
+    }
+
+    /* Card Description Styling */
+    .card-description {
+      background: linear-gradient(45deg, #00f7ff, #ea47ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 500;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    .card:hover .card-description {
+      background: linear-gradient(45deg, #4dabf7, #ff6b7d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    
+
+    .card:hover {
+      transform: rotateY(60deg) translateZ(90px);
+      box-shadow: 0 30px 60px rgba(249, 7, 209, 0.742);
+    }
+
+
+#waves {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+z-index: -10;
+pointer-events: none;
+}
+
+/* New 'More' Card Styles */
+.more-card {
+  width: 832px; /* 20% decrease from 1040px */
+  max-width: 72vw; /* 20% decrease from 90vw */
+  height: 25.6px; /* 20% decrease from 32px */
+  top: calc(50px + 10vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.275rem; /* 15% decrease from 1.5rem */
+  font-family: "Future Z";
+  background: linear-gradient(135deg, 
+    #0c0c0c 0%,
+    #1a1a1a 25%,
+    #2d2d2d 50%,
+    #1a1a1a 75%,
+    #0c0c0c 100%
+  );
+  color: rgba(158, 208, 241, 0.764);
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 40px rgba(38, 6, 220, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 50%;
+transform: translateX(-50%);
+transition: transform 0.8s ease, box-shadow 0.8s ease;
+}
+
+.more-card:hover {
+  /* Move forward (toward viewer) without tilt */
+  transform: translateX(-50%) translateZ(40px);
+  box-shadow: 0 30px 60px rgba(38, 6, 220, 0.7);
+}
+
+.more-card .glitch {
+  font-size: 1.7rem; /* 15% decrease from 2rem */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding-top: 60px;
+  }
+
+  .navbar {
+    height: 60px;
+    padding: 0 1rem;
+  }
+
+  .nav-container {
+    padding: 0 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .nav-logo a {
+    font-size: 1.2rem;
+    margin-left: 0;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 100px;
+    padding: 0 1rem;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 350px;
+    height: 180px; /* Restored to original height */
+    transform: rotateY(0deg) translateZ(0px);
+    font-size: 1rem;
+  }
+
+  .card:hover {
+    transform: rotateY(0deg) translateZ(20px);
+  }
+
+  .glitch {
+    font-size: 1.2rem;
+  }
+
+  .more-card {
+    width: 72%; /* 20% decrease from 90% */
+    max-width: 280px; /* 20% decrease from 350px */
+    height: 19.2px; /* 20% decrease from 24px */
+    margin-top: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 0.5rem;
+  }
+
+  .nav-logo a {
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    gap: 0.8rem;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+
+  .container {
+    margin-top: 80px;
+    gap: 1rem;
+  }
+
+  .card {
+    width: 95%;
+    height: 160px; /* Restored to original height */
+    padding: 0.8rem;
+  }
+
+  .glitch {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .more-card {
+    width: 76vw; /* 20% decrease from 95vw */
+    height: 16px; /* 20% decrease from 20px */
+    margin-top: 250px;
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    gap: 1.5rem;
+    margin-top: 150px;
+  }
+
+  .card {
+    width: 280px;
+    height: 190px;
+  }
+
+  .nav-logo a {
+    margin-left: -5rem;
+  }
+
+  .more-card {
+    width: 728px; /* 20% decrease from 910px */
+    max-width: 76vw; /* 20% decrease from 95vw */
+    height: 22.4px; /* 20% decrease from 28px */
+    margin-top: 350px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+  .nav-container {
+    max-width: 1400px;
+  }
+
+  .container {
+    gap: 3rem;
+  }
+
+  .card {
+    width: 320px;
+    height: 220px; /* Restored to original height */
+  }
+
+  .more-card {
+    width: 332.8px; /* 20% decrease from 416px */
+    height: 22.4px; /* 20% decrease from 28px */
+    margin-top: 350px;
+  }
+}
+
+/* Complementary Color Theme */
+body.complementary-colors {
+  background: linear-gradient(65deg, 
+    #cc0058 0%,     /* Darker hot pink */
+    #6829c4 10%,    /* Darker purple */
+    #2d6bcc 20%,    /* Darker blue */
+    #05cc84 30%,    /* Darker mint green */
+    #cc9909 40%,    /* Darker yellow */
+    #c94505 50%,    /* Darker orange */
+    #cc0058 60%,    /* Darker hot pink */
+    #6829c4 70%,    /* Darker purple */
+    #2d6bcc 80%,    /* Darker blue */
+    #05cc84 90%,    /* Darker mint green */
+    #cc9909 100%    /* Darker yellow */
+  );
+  background-size: 400% 400%;
+  animation: trippyGradient 19.2s ease-in-out infinite;
+  color: #000000;
+  filter: brightness(0.85);
+}
+
+@keyframes trippyGradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 25%; }
+  50% { background-position: 100% 75%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+body.complementary-colors .navbar {
+  background: rgba(239, 226, 194, 0.122);
+}
+
+body.complementary-colors .nav-logo a {
+  background: linear-gradient(45deg, #00ff91, #13c743, #f8bd60);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.complementary-colors .nav-links a {
+  color: #10e46f8c;
+}
+
+body.complementary-colors .nav-links a:hover {
+  color: #7cc713;
+}
+
+body.complementary-colors .nav-links a::after {
+  background: linear-gradient(45deg, #00ff91, #7cc713, #ff7f00);
+}
+
+body.complementary-colors .card {
+  background: linear-gradient(135deg, 
+    #ffffff 0%,     /* Bright silver highlight */
+    #f0f0f0 15%,    /* Light silver */
+    #e0e0e0 25%,    /* Medium-light silver */
+    #c8c8c8 35%,    /* Medium silver */
+    #b0b0b0 45%,    /* Silver */
+    #909090 55%,    /* Dark silver */
+    #808080 65%,    /* Darker silver */
+    #a0a0a0 75%,    /* Medium silver recovery */
+    #c0c0c0 85%,    /* Light silver */
+    #e8e8e8 95%,    /* Very light silver */
+    #ffffff 100%    /* Bright silver highlight */
+  );
+  color: rgba(97, 14, 42, 0.764);
+  box-shadow: 
+    0 20px 40px rgba(217, 249, 35, 0.5),
+    inset 0 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+}
+
+body.complementary-colors .card:hover {
+  box-shadow: 0 30px 60px rgba(6, 248, 111, 0.742);
+}
+
+body.complementary-colors .glitch::before {
+  color: #00ffc8;
+}
+
+body.complementary-colors .glitch::after {
+  color: #ff0026;
+}
+
+body.complementary-colors .card-description {
+  background: linear-gradient(45deg, #ff0800, #15b800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.complementary-colors .card:hover .card-description {
+  background: linear-gradient(45deg, #b25408, #009482);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.complementary-colors ::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+body.complementary-colors ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    #00ff91,
+    #7cc713,
+    #f8bd60,
+    #edb459,
+    #a9ee68,
+    #69f23b
+  );
+  border: 2px solid #fff;
+}
+
