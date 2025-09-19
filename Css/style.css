@@ -3,11 +3,11 @@
   position: fixed;
   top: 12vh;
   left: 8vw;
-  width: 72px;
-  height: 72px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: radial-gradient(circle at var(--qr-focal-x,60%) var(--qr-focal-y,40%), #111 0%, var(--qr-color1, #7fffd4) 35%, var(--qr-color2, #ff00cc) 60%, var(--qr-color3, #00eaff) 80%, transparent 100%);
-  box-shadow: 0 0 48px 16px var(--qr-glow, #7fffd488), 0 0 24px 6px var(--qr-glow, #ff00cc88);
+  background: radial-gradient(circle at var(--qr-focal-x,60%) var(--qr-focal-y,40%), #031ca8b2 0%, var(--qr-color1, #7fffd417) 35%, var(--qr-color2, #ff00cc) 60%, var(--qr-color3, #0d5175) 80%, transparent 100%);
+  box-shadow: 0 0 48px 16px var(--qr-glow, #7fa5ff65), 0 0 24px 6px var(--qr-glow, #ff00ccf4);
   transition: background 1.2s linear, box-shadow 1.2s linear, filter 0.8s linear, z-index 0.4s;
   opacity: 0.7;
   z-index: 1;
@@ -22,7 +22,7 @@
   top: 0; left: 0; width: 100%; height: 100%;
   border-radius: 50%;
   pointer-events: none;
-  background: conic-gradient(from var(--qr-reflect-angle,0deg), #09449d 0%, #ff00cc 33%, #706003 66%, #025b63 100%);
+  background: conic-gradient(from var(--qr-reflect-angle,0deg), #01337d 0%, #ff00cc 33%, #706003 66%, #025b63 100%);
   opacity: 0.45;
   mix-blend-mode: lighten;
   animation: quantum-ripple-reflectZ 7.2s linear infinite, quantum-ripple-reflectX 14.4s linear infinite, quantum-ripple-reflectY 21.6s linear infinite;
@@ -92,7 +92,7 @@
   }
   65% {
     top: 50vh;
-    right: 90vw; /* was left before */
+    left: 90vw; /* was left before */
     transform: scale(1.05) rotateZ(-16deg);
     opacity: 0.7;
     z-index: 10;
@@ -179,10 +179,10 @@ position: relative;
 
 /* Navigation Bar Styles */
 
-#myName {
+
   
   /* letter-spacing removed for normal mode */
-}
+
 .navbar {
   position: fixed;
   top: 0;

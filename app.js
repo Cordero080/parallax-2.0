@@ -108,34 +108,37 @@ document.addEventListener("DOMContentLoaded", function () {
   const nameLetters = originalText.split("");
 
   // Upside down unicode map for basic Latin letters
-  const upsideDownMap = {
-    A: "$",
+  const upsideDownMap = {};
+
+  // Horizontally reflected unicode map for basic Latin letters
+  const horizontalReflectMap = {
+    A: "∀",
     B: "𐐒",
     C: "Ↄ",
     D: "◖",
     E: "Ǝ",
     F: "Ⅎ",
     G: "⅁",
-    H: "H",
-    I: "e",
-    J: "L",
-    K: "8",
-    L: "0",
+    H: "h",
+    I: "I",
+    J: "ſ",
+    K: "⋊",
+    L: "⅃",
     M: "W",
-    N: "o",
-    O: "⌘",
-    P: "L",
-    Q: "d",
-    R: "ᴚ",
+    N: "И",
+    O: "O",
+    P: "Ԁ",
+    Q: "Ò",
+    R: "Я",
     S: "S",
     T: "⊥",
     U: "∩",
     V: "Λ",
-    W: "$",
+    W: "m",
     X: "X",
     Y: "⅄",
     Z: "Z",
-    a: "⏄",
+    a: "ɐ",
     b: "q",
     c: "ɔ",
     d: "p",
@@ -143,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     f: "ɟ",
     g: "ƃ",
     h: "ɥ",
-    i: "ᴉ",
+    i: "ı",
     j: "ɾ",
     k: "ʞ",
     l: "ʃ",
@@ -154,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     q: "b",
     r: "ɹ",
     s: "s",
-    t: "¡",
+    t: "ʇ",
     u: "n",
     v: "ʌ",
     w: "ʍ",
@@ -175,43 +178,87 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add("complementary-colors");
         updateWaveColors(true);
         setEtherealWaveComplexity(true);
+        if (window.startFeatherEffect) window.startFeatherEffect();
       } else {
         document.body.classList.remove("complementary-colors");
         updateWaveColors(false);
         setEtherealWaveComplexity(false);
+        if (window.stopFeatherEffect) window.stopFeatherEffect();
       }
     };
 
   function scrambleName() {
-    // Scramble using only letters in the name
-    let scrambled = [];
-    for (let i = 0; i < nameLetters.length; i++) {
-      // Pick a random letter from the name
-      let randLetter =
-        nameLetters[Math.floor(Math.random() * nameLetters.length)];
-      // Convert to upside down if possible
-      let upside = upsideDownMap[randLetter] || randLetter;
-      scrambled.push(upside);
+    // Scramble using digits from pi and Fibonacci sequence
+    // Animate Fibonacci sequence up to 13th digit, then back, replacing name letters
+    // Pi digits up to the 23rd digit
+    const piDigits = "3141592653589793238462643".split("");
+    // Create the full sequence: up to 23rd, then back down
+    let piUp = piDigits;
+    let piDown = piDigits.slice(0, -1).reverse();
+    // Map for horizontal reflection of digits
+    const reflectMap = {
+      0: "0",
+      1: "Ɩ",
+      2: "ᄅ",
+      3: "Ɛ",
+      6: "9",
+      7: "ㄥ",
+      8: "8",
+      9: "6",
+    };
+    // Map for vertical flipping (upside down) of digits
+    const upsideDownMap = {
+      0: "0",
+      1: "⇂",
+      3: "Ɛ",
+      6: "9",
+      7: "ㄥ",
+      8: "8",
+      9: "6",
+    };
+    // Animation state
+    if (!window.piAnimIndex) window.piAnimIndex = 0;
+    let display = [];
+    let piSeq, isDown;
+    if (window.piAnimIndex < piUp.length) {
+      piSeq = piUp;
+      isDown = false;
+    } else {
+      piSeq = piDown;
+      isDown = true;
     }
-    // Reverse the scrambled array
-    scrambled = scrambled.reverse();
-    myNameElement.textContent = scrambled.join("");
+    for (let i = 0; i < nameLetters.length; i++) {
+      let idx = (window.piAnimIndex + i) % piSeq.length;
+      let num = piSeq[idx % piSeq.length];
+      if (isDown) {
+        // Flip vertically (upside down) instead of horizontal
+        num = num
+          .split("")
+          .map((d) => upsideDownMap[d] || d)
+          .join("");
+      }
+      display.push(num);
+    }
+    myNameElement.textContent = display.join(" ");
+    window.piAnimIndex =
+      (window.piAnimIndex + 1) % (piUp.length + piDown.length);
   }
 
   myNameElement.addEventListener("mouseenter", () => {
-    scrambleInterval = setInterval(scrambleName, 80);
+    window.piAnimIndex = 0;
+    scrambleInterval = setInterval(scrambleName, 100);
     scrambleTimeout = setTimeout(() => {
-      clearInterval(scrambleInterval);
-      scrambleInterval = null;
-      // After 3 seconds, show the final scrambled, reversed, upside down name
-      let final = nameLetters
-        .map((l) => upsideDownMap[l] || l)
-        .reverse()
-        .join("");
-      myNameElement.textContent = final;
-      // Activate complimentary mode
+      // Show final static pi sequence and activate complementary mode
+      const piDigits = "3141592653589793238462643".split("");
+      let piSeq = piDigits.concat(piDigits.slice(0, -1).reverse());
+      let display = [];
+      for (let i = 0; i < nameLetters.length; i++) {
+        let idx = i % piSeq.length;
+        display.push(piSeq[idx]);
+      }
+      myNameElement.textContent = display.join(" ");
       window.toggleComplementaryColors();
-    }, 2000);
+    }, 3000);
   });
 
   myNameElement.addEventListener("mouseleave", () => {
