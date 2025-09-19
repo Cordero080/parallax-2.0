@@ -1,5 +1,19 @@
 const cards = document.querySelectorAll(".card");
 
+// Create the more card and add to container
+function createMoreCard() {
+  const moreCardContainer = document.getElementById("moreCardContainer");
+  if (!moreCardContainer) return;
+  moreCardContainer.innerHTML = "";
+  const moreCard = document.createElement("div");
+  moreCard.className = "card more-card";
+  moreCard.innerHTML = '<span class="glitch" data-text="more">more</span>';
+  moreCardContainer.appendChild(moreCard);
+}
+
+// Ensure more card is created on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", createMoreCard);
+
 function updateTransforms() {
   //quick note: this function is called whenever the user scrolls the page. It updates the transforms of each card based on the scroll position.
   const scrollY = window.scrollY; // simply put, window is the global object in the browser, and scrollY is a property that returns the number of pixels that the document has already been scrolled vertically. This is used to calculate the parallax effect based on the scroll position.

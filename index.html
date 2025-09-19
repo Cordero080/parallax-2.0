@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="Css/style.css" />
     <script src="js/sineWave.js" defer></script>
     <script src="app.js" defer></script>
+    <script src="js/orb.js" defer></script>
   </head>
   <body>
     <audio
@@ -16,92 +17,6 @@
       loop
     ></audio>
     <div class="quantum-ripple" id="quantumRipple"></div>
-    <script>
-      // Smoothly interpolate colors for quantum-ripple
-      if (!window.qrColorScriptLoaded) {
-        window.qrColorScriptLoaded = true;
-        const colors = [
-          { g1: "#6ec6e6", g2: "#6b7bff", g3: "#5a8bb3", glow: "#6b7bff" },
-          { g1: "#5a8bb3", g2: "#b3c7e6", g3: "#6b7bff", glow: "#5a8bb3" },
-          { g1: "#6b7bff", g2: "#22223b", g3: "#5a8bb3", glow: "#22223b" },
-          { g1: "#3a86ff", g2: "#6ec6e6", g3: "#b3e6e6", glow: "#3a86ff" },
-          { g1: "#5e60ce", g2: "#48bfe3", g3: "#3a86ff", glow: "#48bfe3" },
-          { g1: "#22223b", g2: "#6b7bff", g3: "#5e60ce", glow: "#22223b" },
-          { g1: "#48bfe3", g2: "#5e60ce", g3: "#6ec6e6", glow: "#5e60ce" },
-          { g1: "#6b7bff", g2: "#3a86ff", g3: "#48bfe3", glow: "#3a86ff" },
-        ];
-        let idx = 0,
-          t = 0;
-        function lerp(a, b, t) {
-          // Linear interpolate between two hex colors
-          a = a.replace("#", "");
-          b = b.replace("#", "");
-          let ar = parseInt(a.substring(0, 2), 16),
-            ag = parseInt(a.substring(2, 4), 16),
-            ab = parseInt(a.substring(4, 6), 16);
-          let br = parseInt(b.substring(0, 2), 16),
-            bg = parseInt(b.substring(2, 4), 16),
-            bb = parseInt(b.substring(4, 6), 16);
-          let r = Math.round(ar + (br - ar) * t),
-            g = Math.round(ag + (bg - ag) * t),
-            b_ = Math.round(ab + (bb - ab) * t);
-          return `#${r.toString(16).padStart(2, "0")}${g
-            .toString(16)
-            .padStart(2, "0")}${b_.toString(16).padStart(2, "0")}`;
-        }
-        setInterval(() => {
-          idx = (idx + 1) % colors.length;
-          t = 0;
-        }, 3200);
-        setInterval(() => {
-          t = Math.min(t + 0.04, 1);
-          const c1 = lerp(
-            colors[idx].g1,
-            colors[(idx + 1) % colors.length].g1,
-            t
-          );
-          const c2 = lerp(
-            colors[idx].g2,
-            colors[(idx + 1) % colors.length].g2,
-            t
-          );
-          const c3 = lerp(
-            colors[idx].g3,
-            colors[(idx + 1) % colors.length].g3,
-            t
-          );
-          const glow = lerp(
-            colors[idx].glow,
-            colors[(idx + 1) % colors.length].glow,
-            t
-          );
-          const root = document.documentElement;
-          root.style.setProperty("--qr-color1", c1);
-          root.style.setProperty("--qr-color2", c2);
-          root.style.setProperty("--qr-color3", c3);
-          root.style.setProperty("--qr-glow", glow);
-        }, 80);
-      }
-    </script>
-    <script>
-      // Animate CSS variables for quantum-ripple color
-      const colors = [
-        ["#fff", "#00eaff", "#ff6b6b"],
-        ["#ffe066", "#3a86ff", "#ff6b6b"],
-        ["#ffbe0b", "#8338ec", "#22223b"],
-        ["#fb5607", "#ff006e", "#3a86ff"],
-        ["#00f2ff", "#ffbe0b", "#8338ec"],
-      ];
-      let idx = 0;
-      setInterval(() => {
-        const root = document.documentElement;
-        const c = colors[idx % colors.length];
-        root.style.setProperty("--qr-color1", c[0]);
-        root.style.setProperty("--qr-color2", c[1]);
-        root.style.setProperty("--qr-color3", c[2]);
-        idx++;
-      }, 3200);
-    </script>
     <nav class="navbar">
       <div class="nav-container">
         <div class="nav-logo">
@@ -124,12 +39,13 @@
       </div>
       <div class="card" data-speed="-0.4">
         <h2 class="glitch" data-text="PROJECT II">PROJECT II</h2>
-        <p class="card-description">EXPRESS APP</p>
+        <p class="card-description">DOJO APP</p>
       </div>
       <div class="card" data-speed="0.9">
         <h2 class="glitch" data-text="PROJECT III">PROJECT III</h2>
         <p class="card-description">MAGNUM OPUS</p>
       </div>
+      <div id="moreCardContainer"></div>
     </div>
   </body>
 </html>
