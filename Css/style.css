@@ -1,3 +1,135 @@
+
+.quantum-ripple {
+  position: fixed;
+  top: 12vh;
+  left: 8vw;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, var(--qr-color1, #fff) 0%, var(--qr-color2, #00eaff) 40%, var(--qr-color3, #ff6b6bb3) 80%, transparent 100%);
+  box-shadow: 0 0 48px 16px var(--qr-glow, #00eaff88), 0 0 24px 6px var(--qr-glow, #ff6b6b88);
+  transition: background 1.2s linear, box-shadow 1.2s linear, filter 0.8s linear;
+  opacity: 0.7;
+  z-index: 1;
+  pointer-events: none;
+  animation: quantum-ripple-move 16s infinite cubic-bezier(.77,0,.18,1), quantum-ripple-color 16s infinite linear;
+@keyframes quantum-ripple-color {
+  0% {
+    --qr-color1: var(--browser-accent-color, #fff);
+    --qr-color2: var(--browser-bg-color, #00eaff);
+    --qr-color3: #ff6b6b;
+  }
+  20% {
+    --qr-color1: #ffe066;
+    --qr-color2: #3a86ff;
+    --qr-color3: var(--browser-accent-color, #ff6b6b);
+  }
+  40% {
+    --qr-color1: #ffbe0b;
+    --qr-color2: #8338ec;
+    --qr-color3: var(--browser-bg-color, #22223b);
+  }
+  60% {
+    --qr-color1: #fb5607;
+    --qr-color2: #ff006e;
+    --qr-color3: #3a86ff;
+  }
+  80% {
+    --qr-color1: #00f2ff;
+    --qr-color2: #ffbe0b;
+    --qr-color3: #8338ec;
+  }
+  100% {
+    --qr-color1: var(--browser-accent-color, #fff);
+    --qr-color2: var(--browser-bg-color, #00eaff);
+    --qr-color3: #ff6b6b;
+  }
+}
+  filter: blur(1.2px) brightness(1.3) saturate(1.8);
+  transition: z-index 0.4s, filter 0.4s;
+}
+
+@keyframes quantum-ripple-move {
+  0% {
+    top: 12vh;
+    left: 8vw;
+    transform: scale(1.2) rotateZ(0deg);
+    opacity: 0.2;
+    z-index: 1;
+  }
+  10% {
+    opacity: 0.7;
+    z-index: 10;
+    transform: scale(1.4) rotateZ(8deg);
+  }
+  15% {
+    top: 30vh;
+    left: 70vw;
+    transform: scale(1.18) rotateZ(18deg);
+    opacity: 0.9;
+    z-index: 10;
+  }
+  25% {
+    opacity: 0.3;
+    z-index: 1;
+    transform: scale(0.7) rotateZ(0deg);
+  }
+  32% {
+    top: 70vh;
+    left: 60vw;
+    transform: scale(0.92) rotateZ(-8deg);
+    opacity: 0.6;
+    z-index: 1;
+  }
+  40% {
+    opacity: 0.15;
+    z-index: 1;
+    transform: scale(0.5) rotateZ(-12deg);
+  }
+  48% {
+    top: 88vh;
+    left: 20vw;
+    transform: scale(1.12) rotateZ(24deg);
+    opacity: 0.8;
+    z-index: 10;
+  }
+  55% {
+    opacity: 0.25;
+    z-index: 1;
+    transform: scale(0.8) rotateZ(0deg);
+  }
+  65% {
+    top: 50vh;
+    left: 90vw;
+    transform: scale(1.05) rotateZ(-16deg);
+    opacity: 0.7;
+    z-index: 10;
+  }
+  75% {
+    opacity: 0.1;
+    z-index: 1;
+    transform: scale(0.6) rotateZ(-8deg);
+  }
+  82% {
+    top: 18vh;
+    left: 40vw;
+    transform: scale(1.22) rotateZ(32deg);
+    opacity: 0.9;
+    z-index: 10;
+  }
+  90% {
+    opacity: 0.2;
+    z-index: 1;
+    transform: scale(0.7) rotateZ(0deg);
+  }
+  100% {
+    top: 12vh;
+    left: 8vw;
+    transform: scale(1.2) rotateZ(0deg);
+    opacity: 0.2;
+    z-index: 1;
+  }
+}
 @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Honk&family=Monoton&family=Poiret+One&family=Splash&family=Tektur:wght@400..900&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
@@ -56,19 +188,42 @@ position: relative;
 /* Navigation Bar Styles */
 
 #myName {
+  
   /* letter-spacing removed for normal mode */
 }
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 80px;
-  background: rgba(16, 29, 61, 0.331);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1000;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(120deg, 
+      var(--browser-accent-color, #07020e0a) 0%, 
+      var(--browser-bg-color, #22223b) 100%
+    );
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.22), 0 0 32px 8px var(--browser-accent-color, #6e6bff44);
+    backdrop-filter: blur(18px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(18px) saturate(180%) brightness(1.1);
+    border-bottom: 2px solid var(--browser-accent-color, #ff6bab67);
+    border-radius: 0 0 32px 32px;
+    z-index: 1000;
+    overflow: hidden;
+    transition: box-shadow 0.4s, background 0.4s;
 }
+.navbar::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 60% 20%, rgba(6, 1, 34, 0.131) 0%, rgba(1, 7, 25, 0) 100%);
+  opacity: 0.7;
+  mix-blend-mode: lighten;
+}
+.navbar:hover {
+  box-shadow: 0 12px 48px 0 #00eaff20, 0 0 48px 12px #04064a6f;
+  background: linear-gradient(120deg, rgba(0, 68, 255, 0.04) 0%, rgba(255, 255, 255, 0.001) 100%);
+}
+
 
 .nav-container {
   max-width: 1200px;
@@ -90,13 +245,14 @@ position: relative;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-left: 2rem; /* Push the logo text to the right */
+    margin-left: 0;
 }
 
 .nav-links {
   display: flex;
   gap: 2rem;
   perspective: 600px;
+    justify-content: flex-end;
 }
 
 .nav-links a {
@@ -216,7 +372,7 @@ position: relative;
     .glitch {
       position: relative;
       display: inline-block;
-      animation: glitch 9s infinite;
+      animation: glitch 10s infinite;
     }
 
     .glitch::before,
@@ -231,12 +387,12 @@ position: relative;
 
     .glitch::before {
       color: #ff0080;
-      z-index: -1;
-      animation: glitch-before 1s infinite;
+      z-index: -10;
+      animation: glitch-before 10s infinite;
     }
 
     .glitch::after {
-      color: #00eeff;
+      color: #0080ff;
       z-index: -2;
   
       animation: glitch-after 2s infinite;
@@ -257,7 +413,7 @@ position: relative;
 
     @keyframes glitch-before {
       0%, 100% { transform: translate(0); }
-      15% { transform: translate(2px, -2px); }
+      15% { transform: translate(1px, -1px); }
       30% { transform: translate(-2px, 2px); }
       40% { transform: translate(2px, 2px); }
       30% { transform: translate(-2px, -2px); }
@@ -265,7 +421,7 @@ position: relative;
       60% { transform: translate(-2px, 2px); }
       40% { transform: translate(2px, 2px); }
       95% { transform: translate(-2px, -2px); }
-      90% { transform: translate(2px, -2px); }
+      90% { transform: translate(1px, -1px); }
     }
 
     @keyframes glitch-after {
@@ -282,7 +438,7 @@ position: relative;
     }
 
     .card:hover .glitch {
-      animation-duration: .2s;
+      animation-duration: .3s;
     }
 
     /* Card Description Styling */
