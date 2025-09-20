@@ -3,14 +3,14 @@
 if (!window.qrColorScriptLoaded) {
   window.qrColorScriptLoaded = true;
   const colors = [
-    { g1: "#6ec6e6", g2: "#6b7bff", g3: "#5a8bb3", glow: "#6b7bff" },
-    { g1: "#5a8bb3", g2: "#b3c7e6", g3: "#6b7bff", glow: "#5a8bb3" },
+    { g1: "#0c2f74ff", g2: "#6b7bff", g3: "#5a8bb3", glow: "#6b7bff" },
+    { g1: "#5a8bb3", g2: "#05224eff", g3: "#6b7bff", glow: "#5a8bb3a7" },
     { g1: "#6b7bff", g2: "#22223b", g3: "#5a8bb3", glow: "#22223b" },
-    { g1: "#3a86ff", g2: "#6ec6e6", g3: "#b3e6e6", glow: "#3a86ff" },
-    { g1: "#5e60ce", g2: "#48bfe3", g3: "#3a86ff", glow: "#48bfe3" },
+    { g1: "#3a86ff", g2: "#0d6788ff", g3: "#b3e6e6", glow: "#3a86ff" },
+    { g1: "#5e60ce", g2: "#48bfe3", g3: "#3172dcff", glow: "#0b6884ff" },
     { g1: "#22223b", g2: "#6b7bff", g3: "#5e60ce", glow: "#22223b" },
-    { g1: "#48bfe3", g2: "#5e60ce", g3: "#6ec6e6", glow: "#5e60ce" },
-    { g1: "#6b7bff", g2: "#3a86ff", g3: "#48bfe3", glow: "#3a86ff" },
+    { g1: "#075065ff", g2: "#5e60ce", g3: "#6ec6e6", glow: "#5e60ce" },
+    { g1: "#6b7bff", g2: "#3a86ff", g3: "#152e8aff", glow: "#3a86ff" },
   ];
   let idx = 0,
     t = 0;
